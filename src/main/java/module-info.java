@@ -1,8 +1,8 @@
-module com.example.connectfour {
-    requires javafx.controls;
-    requires javafx.fxml;
+module com.example.demo {
+  requires javafx.controls;
+  requires javafx.fxml;
 
 
-    opens com.example.connectfour to javafx.fxml;
-    exports com.example.connectfour;
+  opens com.example.demo to javafx.fxml;
+  exports com.example.demo;
 }
