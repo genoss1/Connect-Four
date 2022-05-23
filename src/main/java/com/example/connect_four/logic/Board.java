@@ -30,70 +30,81 @@ public class Board {
         }
     }
 
-    //funkcja do wyświetlania w konsoli oczywiście do usunięcia jak już dodamy fxml, 0-puste pole, Y-Yellow, R-Red
-    public void tempPrint() {
-        for (int i = 0; i < MAX_ROW; i++) {
-            for (int j = 0; j < MAX_COLUMN; j++) {
-                if (fields[i][j] == Field.EMPTY_FIELD) {
-                    System.out.printf(" O ");
-                } else if (fields[i][j] == Field.YELLOW_PAWN) {
-                    System.out.printf(" Y ");
-                } else {
-                    System.out.printf(" R ");
-                }
-            }
-            System.out.println();
+    public boolean hasAnyFour()
+    {
+        if(hasFour(Field.YELLOW_PAWN))
+        {
+            return true;
+        }else if(hasFour(Field.RED_PAWN))
+        {
+            return true;
         }
+        return false;
+    }
+    
+    public boolean hasFour(Field pawn) {
+       if(hasFourVertical(pawn))
+       {
+           return true;
+       }else if(hasFourHorizontal(pawn))
+       {
+           return true;
+       }else if(hasFourBiasUp(pawn))
+       {
+           return true;
+       }else if(hasFourBiasDown(pawn))
+       {
+           return true;
+       }
+
+        return false;
     }
 
-
-    //return true if found any matching "4's"
-    public boolean hasFour() {
-
-        //sprawdzenie czy poziomo istenieje jakaś czwórka
-        for (int i = 0; i < (MAX_ROW); i++) {
-            for (int j = 0; j < (MAX_COLUMN - 3); j++) {
-                if (fields[i][j] == Field.RED_PAWN && fields[i][j + 1] == Field.RED_PAWN && fields[i][j + 2] == Field.RED_PAWN && fields[i][j + 3] == Field.RED_PAWN) {
-                    return true;
-                } else if (fields[i][j] == Field.YELLOW_PAWN && fields[i][j + 1] == Field.YELLOW_PAWN && fields[i][j + 2] == Field.YELLOW_PAWN && fields[i][j + 3] == Field.YELLOW_PAWN) {
-                    return true;
-                }
-            }
-        }
-
-        //sprawdzenie czy pionowo istnieje jakaś czwórka
+    public boolean hasFourVertical(Field pawn)
+    {
         for (int i = 0; i < (MAX_ROW - 3); i++) {
             for (int j = 0; j < MAX_COLUMN; j++) {
-                if (fields[i][j] == Field.RED_PAWN && fields[i + 1][j] == Field.RED_PAWN && fields[i + 2][j] == Field.RED_PAWN && fields[i + 3][j] == Field.RED_PAWN) {
-                    return true;
-                } else if (fields[i][j] == Field.YELLOW_PAWN && fields[i + 1][j] == Field.YELLOW_PAWN && fields[i + 2][j] == Field.YELLOW_PAWN && fields[i + 3][j] == Field.YELLOW_PAWN) {
+                if (fields[i][j] == pawn && fields[i + 1][j] == pawn && fields[i + 2][j] == pawn && fields[i + 3][j] == pawn) {
                     return true;
                 }
             }
         }
+        return false;
+    }
 
-        //sprawdzenie na ukos 1 "do dołu"
-        for (int i = 0; i < (MAX_ROW - 3); i++) {
+    public boolean hasFourHorizontal(Field pawn)
+    {
+        for (int i = 0; i < (MAX_ROW); i++) {
             for (int j = 0; j < (MAX_COLUMN - 3); j++) {
-                if (fields[i][j] == Field.RED_PAWN && fields[i + 1][j + 1] == Field.RED_PAWN && fields[i + 2][j + 2] == Field.RED_PAWN && fields[i + 3][j + 3] == Field.RED_PAWN) {
-                    return true;
-                } else if (fields[i][j] == Field.YELLOW_PAWN && fields[i + 1][j + 1] == Field.YELLOW_PAWN && fields[i + 2][j + 2] == Field.YELLOW_PAWN && fields[i + 3][j + 3] == Field.YELLOW_PAWN) {
+                if (fields[i][j] == pawn && fields[i][j + 1] == pawn && fields[i][j + 2] == pawn && fields[i][j + 3] == pawn) {
                     return true;
                 }
             }
         }
+        return false;
+    }
 
-        //sprawdzenie na ukos 2 "do góry"
+    public boolean hasFourBiasUp(Field pawn)
+    {
         for (int i = 3; i < MAX_ROW; i++) {
             for (int j = 0; j < (MAX_COLUMN - 3); j++) {
-                if (fields[i][j] == Field.RED_PAWN && fields[i - 1][j + 1] == Field.RED_PAWN && fields[i - 1][j + 2] == Field.RED_PAWN && fields[i - 3][j + 3] == Field.RED_PAWN) {
-                    return true;
-                } else if (fields[i][j] == Field.YELLOW_PAWN && fields[i - 1][j + 1] == Field.YELLOW_PAWN && fields[i - 2][j + 2] == Field.YELLOW_PAWN && fields[i - 3][j + 3] == Field.YELLOW_PAWN) {
+                if (fields[i][j] == pawn && fields[i - 1][j + 1] == pawn && fields[i - 1][j + 2] == pawn && fields[i - 3][j + 3] == pawn) {
                     return true;
                 }
             }
         }
+        return false;
+    }
 
+    public boolean hasFourBiasDown(Field pawn)
+    {
+        for (int i = 0; i < (MAX_ROW - 3); i++) {
+            for (int j = 0; j < (MAX_COLUMN - 3); j++) {
+                if (fields[i][j] == pawn && fields[i + 1][j + 1] == pawn && fields[i + 2][j + 2] == pawn && fields[i + 3][j + 3] == pawn) {
+                    return true;
+                }
+            }
+        }
         return false;
     }
 
