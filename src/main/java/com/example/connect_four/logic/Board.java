@@ -41,7 +41,7 @@ public class Board {
         }
         return false;
     }
-    
+
     public boolean hasFour(Field pawn) {
        if(hasFourVertical(pawn))
        {
@@ -112,7 +112,7 @@ public class Board {
         return fields;
     }
 
-    public boolean checkIfFreeColumn(int column) {
+    public boolean isColumnFree(int column) {
         for (int i = 0; i < MAX_ROW; i++) {
             if (fields[i][column] == Field.EMPTY_FIELD) {
                 return true;
