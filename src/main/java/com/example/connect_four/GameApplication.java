@@ -1,6 +1,5 @@
 package com.example.connect_four;
 
-import com.example.connect_four.logic.Game;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

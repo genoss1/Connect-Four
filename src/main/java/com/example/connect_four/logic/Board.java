@@ -1,7 +1,5 @@
 package com.example.connect_four.logic;
 
-import java.util.ArrayList;
-
 public class Board {
     private final int MAX_ROW = 6;
     private final int MAX_COLUMN = 7;
@@ -50,7 +48,7 @@ public class Board {
 
 
     //return true if found any matching "4's"
-    public boolean findFour() {
+    public boolean hasFour() {
 
         //sprawdzenie czy poziomo istenieje jakaś czwórka
         for (int i = 0; i < (MAX_ROW); i++) {
