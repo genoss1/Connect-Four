@@ -4,7 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Game {
-    private final int MAX_ROUND_NUMBER = 3;
+    private final int MAX_POINTS = 10;
     private final Player player1 = new Player(Field.RED_PAWN);
     private final Player player2 = new Player(Field.YELLOW_PAWN);
     private Player currentPlayer;
@@ -27,12 +27,8 @@ public class Game {
         return board;
     }
 
-    public int getRound() {
-        return roundNumber;
-    }
-
-    public int getMAX_ROUND_NUMBER() {
-        return MAX_ROUND_NUMBER;
+    public int getMAX_POINTS() {
+        return MAX_POINTS;
     }
 
     public void setRandomCurrentPlayer() {
@@ -47,15 +43,5 @@ public class Game {
         } else {
             currentPlayer = player1;
         }
-    }
-
-    public boolean nextRound() {
-        if (roundNumber < MAX_ROUND_NUMBER) {
-            roundNumber++;
-            return true;
-        } else {
-            return false;
-        }
-
     }
 }

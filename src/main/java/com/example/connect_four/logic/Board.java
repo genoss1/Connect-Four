@@ -21,13 +21,14 @@ public class Board {
         }
     }
 
-    public void addPawn(Field pawn, int column) {
+    public int addPawn(Field pawn, int column) {
         for (int i = (MAX_ROW - 1); i >= 0; i--) {
             if (fields[i][column] == Field.EMPTY_FIELD) {
                 fields[i][column] = pawn;
-                return;
+                return i;
             }
         }
+        return -1;
     }
 
     public boolean hasAnyFour()
@@ -43,21 +44,10 @@ public class Board {
     }
 
     public boolean hasFour(Field pawn) {
-       if(hasFourVertical(pawn))
-       {
-           return true;
-       }else if(hasFourHorizontal(pawn))
-       {
-           return true;
-       }else if(hasFourBiasUp(pawn))
-       {
-           return true;
-       }else if(hasFourBiasDown(pawn))
-       {
-           return true;
-       }
-
-        return false;
+       if(hasFourVertical(pawn)) return true;
+       else if(hasFourHorizontal(pawn)) return true;
+       else if(hasFourBiasUp(pawn)) return true;
+       else return hasFourBiasDown(pawn);
     }
 
     public boolean hasFourVertical(Field pawn)
