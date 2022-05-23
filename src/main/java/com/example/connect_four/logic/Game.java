@@ -58,42 +58,4 @@ public class Game {
         }
 
     }
-
-    public void gameMain() {
-        Scanner scanner = new Scanner(System.in);
-        board.setEmptyBoard();
-        int columnNumber;
-        while (roundNumber <= MAX_ROUND_NUMBER) {
-            do {
-                System.out.println("Podaj od 0 do 6 ");
-                columnNumber = scanner.nextInt();
-            } while (!board.checkIfFreeColumn(columnNumber));
-            board.addPawn(player1.getPawn(), columnNumber);
-            board.tempPrint();
-            if (board.findFour()) {
-                player1.addPoint();
-                roundNumber++;
-                System.out.println("Player 1 won this round");
-                System.out.println("Player1 points:" + player1.getPoints() + " Player2 points: " + player2.getPoints());
-                board.setEmptyBoard();
-                continue;
-            }
-
-            do {
-                System.out.println("Podaj od 0 do 6 ");
-                columnNumber = scanner.nextInt();
-            } while (!board.checkIfFreeColumn(columnNumber));
-            board.addPawn(player2.getPawn(), columnNumber);
-            board.tempPrint();
-            if (board.findFour()) {
-                player2.addPoint();
-                roundNumber++;
-                System.out.println("Player 2 won this round");
-                System.out.println("Player1 -" + player1.getPoints() + "Player 2 - " + player2.getPoints());
-                board.setEmptyBoard();
-                continue;
-            }
-        }
-        System.out.println("The end");
-    }
 }

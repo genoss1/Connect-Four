@@ -15,9 +15,6 @@ public class GameApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setScene(scene);
         stage.show();
-        Game testGame = new Game();
-        testGame.gameMain();
-
     }
 
     public static void main(String[] args) {
