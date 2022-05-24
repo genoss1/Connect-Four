@@ -92,7 +92,7 @@ public class GameController {
     void addCirclePawnToGridPaneBoard(int row, int column) {
 
         Player currentPlayer = game.getCurrentPlayer();
-        Circle circlePawn = new Circle(30, currentPlayer.getPawn().getColor());
+        Circle circlePawn = new Circle(currentPlayer.getPawn().getRadius(), currentPlayer.getPawn().getColor());
         gridPaneBoard.add(circlePawn, column, row);
 
     }

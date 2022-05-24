@@ -9,6 +9,8 @@ public enum Field {
 
   private final Color color;
 
+  private final int radius = 30;
+
   Field(Color color) {
     this.color = color;
   }
@@ -16,4 +18,6 @@ public enum Field {
   public Color getColor() {
     return color;
   }
+
+  public int getRadius() { return radius; }
 }
