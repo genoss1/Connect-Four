@@ -49,28 +49,28 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <Circle fx:id="circleChoose1" fill="DODGERBLUE" layoutX="126.0" layoutY="55.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose1" fill="DODGERBLUE" layoutX="126.0" layoutY="55.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="50.0" />
                </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose2" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose2" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="38.0" />
                </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose3" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose3" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="25.0" />
                </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose4" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Circle fx:id="circleChoose5" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="gridpane-board" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose4" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <Circle fx:id="circleChoose5" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="gridpane-board" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="25.0" />
                </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose6" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose6" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="38.0" />
                </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose7" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" styleClass="gridpane-board" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Circle fx:id="circleChoose7" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="gridpane-board" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets right="50.0" />
                </GridPane.margin></Circle>
@@ -110,7 +110,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Circle fx:id="circleLeft1" fill="#ff6363" radius="55.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle-first-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Circle fx:id="circleLeft1" fill="#ff6363" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-first-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Text fx:id="textPoints1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="0" textAlignment="CENTER" wrappingWidth="25.055999755859375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets />
@@ -132,7 +132,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Circle fx:id="circleRight2" fill="#f8b400" radius="55.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle-second-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Circle fx:id="circleRight2" fill="#f8b400" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-second-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
             <Text fx:id="textPoints2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
