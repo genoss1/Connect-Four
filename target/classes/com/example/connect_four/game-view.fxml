@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -7,16 +8,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background-main-menu" stylesheets="@game-view.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect_four.GameController">
+<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="gridpane-background" stylesheets="@game-view.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.connect_four.GameController">
   <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
   </columnConstraints>
   <rowConstraints>
     <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
     <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints minHeight="10.0" percentHeight="75.0" prefHeight="30.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="423.0" minHeight="10.0" percentHeight="75.0" prefHeight="361.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="96.0" minHeight="10.0" percentHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
       <GridPane fx:id="gridPaneChooseTriangle7x1" prefHeight="60.0" prefWidth="450.0" GridPane.columnIndex="1">
@@ -56,7 +58,7 @@
             <Circle fx:id="circleChoose7" fill="DODGERBLUE" radius="30.0" stroke="BLACK" strokeType="INSIDE" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
-      <GridPane fx:id="gridPaneBoard" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <GridPane fx:id="gridPaneBoard" styleClass="gridpane-board" GridPane.columnIndex="1" GridPane.rowIndex="2">
         <columnConstraints>
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -85,13 +87,16 @@
           <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-text" text="Player 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-name" text="Player 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="18.0" />
                </font>
             </Text>
-            <Circle fx:id="circleLeft1" fill="#ff6363" radius="50.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Text fx:id="textPoints1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="Text" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Circle fx:id="circleLeft1" fill="#ff6363" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle-first-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Text fx:id="textPoints1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="0" textAlignment="CENTER" wrappingWidth="25.055999755859375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets />
+               </GridPane.margin></Text>
          </children>
       </GridPane>
       <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
@@ -109,8 +114,8 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <Circle fx:id="circleRight2" fill="#f8b400" radius="50.0" stroke="BLACK" strokeType="INSIDE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Text fx:id="textPoints2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="Text" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Circle fx:id="circleRight2" fill="#f8b400" radius="50.0" stroke="BLACK" strokeType="INSIDE" styleClass="circle-second-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <Text fx:id="textPoints2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-score" text="0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
          </children>
       </GridPane>
    </children>
