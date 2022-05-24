@@ -3,7 +3,7 @@ package com.example.connect_four.logic;
 public class Board {
     private final int MAX_ROW = 6;
     private final int MAX_COLUMN = 7;
-    private final Field[][] fields = new Field[6][7];
+    private final Field[][] fields = new Field[MAX_ROW][MAX_COLUMN];
 
     public Board() {
         for (int i = 0; i < MAX_ROW; i++) {
@@ -21,43 +21,25 @@ public class Board {
         }
     }
 
-    public void addPawn(Field pawn, int column) {
+    public int addPawn(Field pawn, int column) {
         for (int i = (MAX_ROW - 1); i >= 0; i--) {
             if (fields[i][column] == Field.EMPTY_FIELD) {
                 fields[i][column] = pawn;
-                return;
+                return i;
             }
         }
+        return -1;
     }
 
-    public boolean hasAnyFour()
-    {
-        if(hasFour(Field.YELLOW_PAWN))
-        {
-            return true;
-        }else if(hasFour(Field.RED_PAWN))
-        {
-            return true;
-        }
-        return false;
+    public boolean hasAnyFour() {
+        return hasFour(Field.YELLOW_PAWN) || hasFour(Field.RED_PAWN);
     }
 
     public boolean hasFour(Field pawn) {
-       if(hasFourVertical(pawn))
-       {
-           return true;
-       }else if(hasFourHorizontal(pawn))
-       {
-           return true;
-       }else if(hasFourBiasUp(pawn))
-       {
-           return true;
-       }else if(hasFourBiasDown(pawn))
-       {
-           return true;
-       }
-
-        return false;
+       if(hasFourVertical(pawn)) return true;
+       else if(hasFourHorizontal(pawn)) return true;
+       else if(hasFourBiasUp(pawn)) return true;
+       else return hasFourBiasDown(pawn);
     }
 
     public boolean hasFourVertical(Field pawn)
@@ -88,7 +70,7 @@ public class Board {
     {
         for (int i = 3; i < MAX_ROW; i++) {
             for (int j = 0; j < (MAX_COLUMN - 3); j++) {
-                if (fields[i][j] == pawn && fields[i - 1][j + 1] == pawn && fields[i - 1][j + 2] == pawn && fields[i - 3][j + 3] == pawn) {
+                if (fields[i][j] == pawn && fields[i - 1][j + 1] == pawn && fields[i - 2][j + 2] == pawn && fields[i - 3][j + 3] == pawn) {
                     return true;
                 }
             }
@@ -121,4 +103,7 @@ public class Board {
         return false;
     }
 
+    public int getMAX_COLUMN() {
+        return MAX_COLUMN;
+    }
 }

@@ -13,6 +13,8 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setScene(scene);
+        stage.setFullScreen(true);
+        stage.setFullScreenExitHint("");
         stage.show();
     }
 
