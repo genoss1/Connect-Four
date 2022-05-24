@@ -3,7 +3,7 @@ package com.example.connect_four.logic;
 public class Board {
     private final int MAX_ROW = 6;
     private final int MAX_COLUMN = 7;
-    private final Field[][] fields = new Field[6][7];
+    private final Field[][] fields = new Field[MAX_ROW][MAX_COLUMN];
 
     public Board() {
         for (int i = 0; i < MAX_ROW; i++) {
@@ -103,4 +103,7 @@ public class Board {
         return false;
     }
 
+    public int getMAX_COLUMN() {
+        return MAX_COLUMN;
+    }
 }

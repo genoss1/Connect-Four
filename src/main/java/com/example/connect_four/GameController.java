@@ -62,6 +62,7 @@ public class GameController {
         addCircleToView(row, selectedColumn);
 
         boolean isThereAnyFourOnBoard = game.getBoard().hasAnyFour();
+
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
             newRound();
@@ -74,9 +75,6 @@ public class GameController {
 
             removeEventFromCircleWhenFullColumn();
         }
-
-
-
 
     };
 
