@@ -9,7 +9,6 @@ public class Game {
     private final Player player2 = new Player(Field.YELLOW_PAWN);
     private Player currentPlayer;
     private final Board board = new Board();
-    private int roundNumber = 1;
 
     public Player getPlayer1() {
         return player1;

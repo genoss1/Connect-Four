@@ -31,16 +31,8 @@ public class Board {
         return -1;
     }
 
-    public boolean hasAnyFour()
-    {
-        if(hasFour(Field.YELLOW_PAWN))
-        {
-            return true;
-        }else if(hasFour(Field.RED_PAWN))
-        {
-            return true;
-        }
-        return false;
+    public boolean hasAnyFour() {
+        return hasFour(Field.YELLOW_PAWN) || hasFour(Field.RED_PAWN);
     }
 
     public boolean hasFour(Field pawn) {
