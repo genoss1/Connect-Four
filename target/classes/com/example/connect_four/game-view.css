@@ -1,5 +1,46 @@
-.background-main-menu{
+@font-face {
+    font-family: 'Nexa Light';
+    src: url("fonts/Nexa-Light.otf");
+}
+
+@font-face {
+    font-family: 'Nexa Bold';
+    src: url("fonts/Nexa-Bold.otf");
+}
+
+.text-player-name {
+    -fx-font-family: 'Nexa Light';
+    -fx-font-size: 46 px;
+    -fx-fill: #FFFFFF;
+    -fx-alignment: center;
+}
+
+.text-player-score {
+    -fx-font-family: 'Nexa Bold';
+    -fx-font-size: 36 px;
+    -fx-fill: #FFFFFF;
+    -fx-alignment: center;
+}
+
+.gridpane-background {
     -fx-background-color: #125B50;
-    -fx-background-size: 100% 100%;
-    -fx-background-position: center center;
+}
+
+.gridpane-board {
+    -fx-background-color: #FAF5E4;
+    -fx-background-radius: 10px;
+    -fx-padding: 30px;
+
+}
+
+.gridpane-tokens-over-board {
+    -fx-padding: 50px;
+}
+
+.circle-first-player {
+    -fx-fill: #FF6363;
+}
+
+.circle-second-player {
+    -fx-fill: #F8B400;
 }
