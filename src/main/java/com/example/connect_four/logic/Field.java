@@ -9,7 +9,7 @@ public enum Field {
 
   private final Color color;
 
-  private final int radius = 30;
+  private final int radius = 40;
 
   Field(Color color) {
     this.color = color;

@@ -30,11 +30,13 @@
     -fx-background-color: #FAF5E4;
 
 
-    -fx-background-radius: 50px;
-    -fx-border-radius: 40px;
-    -fx-border-width: 3px;
-    -fx-border-color: black;
-    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 6), 15, 0, 0, 0);
+    -fx-background-radius: 10px;
+    -fx-padding: 30px;
+
+}
+
+.gridpane-tokens-over-board {
+    -fx-padding: 50px;
 }
 
 .circle-first-player {
