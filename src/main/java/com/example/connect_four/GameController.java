@@ -63,16 +63,27 @@ public class GameController {
 
         boolean isThereAnyFourOnBoard = game.getBoard().hasAnyFour();
 
+        boolean isThereAnyColumnFree = false;
+
+        for(int i = 0; i < board.getMAX_COLUMN(); i++) {
+            if(board.isColumnFree(i)) {
+                isThereAnyColumnFree = true;
+                break;
+            }
+        }
+
+
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
             newRound();
-        } else {
+        } else if(!isThereAnyColumnFree) {
+            newRound();
+        }else {
             game.switchPlayer();
         /*
         FIXME: nie działa
          */
             circle.setFill(currentPlayer.getPawn().getColor());
-
             removeEventFromCircleWhenFullColumn();
         }
 
