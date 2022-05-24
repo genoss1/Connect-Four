@@ -33,6 +33,9 @@ public class GameController {
         pointsBinding(textPoints1, game.getPlayer1());
         pointsBinding(textPoints2, game.getPlayer2());
 
+        gridPaneBoard.setStyle("-fx-background-color: pink");
+        gridPaneSelectColumn.setStyle("-fx-background-color: green");
+
         newRound();
 
 
@@ -62,7 +65,8 @@ public class GameController {
         Circle circle = (Circle) node;
 
 
-        int selectedColumn = GridPane.getColumnIndex(circle);
+        Integer selectedColumn = GridPane.getColumnIndex(circle);
+        if(selectedColumn == null) selectedColumn = 0;
 
         Board board = game.getBoard();
         Player currentPlayer = game.getCurrentPlayer();
