@@ -24,7 +24,6 @@ public class GameController {
 
     Game game = new Game();
 
-
     @FXML
     public void initialize() {
         pointsBinding(textPoints1, game.getPlayer1());
@@ -33,7 +32,7 @@ public class GameController {
         newRound();
     }
 
-    EventHandler<MouseEvent> displayHideSelectingCircle = (event) -> {
+    EventHandler<MouseEvent> displaySelectedCircle = (event) -> {
         for(Node node : gridPaneSelectColumn.getChildren()) {
             Circle circle = (Circle)node;
             circle.setFill(Color.TRANSPARENT);
@@ -47,7 +46,7 @@ public class GameController {
         circle.setFill(color);
     };
 
-    EventHandler<MouseEvent> selectCircle = (event) -> {
+    EventHandler<MouseEvent> selectColumn = (event) -> {
 
         Node node = (Node)event.getTarget();
         Circle circle = (Circle) node;
@@ -59,7 +58,7 @@ public class GameController {
         Player currentPlayer = game.getCurrentPlayer();
         int row = board.addPawn(currentPlayer.getPawn(), selectedColumn);
 
-        addCircleToView(row, selectedColumn);
+        addCirclePawnToGridPaneBoard(row, selectedColumn);
 
         boolean isThereAnyFourOnBoard = game.getBoard().hasAnyFour();
 
@@ -80,10 +79,7 @@ public class GameController {
             newRound();
         }else {
             game.switchPlayer();
-        /*
-        FIXME: nie działa
-         */
-            circle.setFill(currentPlayer.getPawn().getColor());
+            circle.setFill(game.getCurrentPlayer().getPawn().getColor());
             removeEventFromCircleWhenFullColumn();
         }
 
@@ -93,11 +89,11 @@ public class GameController {
         text.textProperty().bind(player.getIntegerProperty());
     }
 
-    void addCircleToView(int row, int column) {
+    void addCirclePawnToGridPaneBoard(int row, int column) {
 
         Player currentPlayer = game.getCurrentPlayer();
-        Circle circle = new Circle(30, currentPlayer.getPawn().getColor());
-        gridPaneBoard.add(circle, column, row);
+        Circle circlePawn = new Circle(30, currentPlayer.getPawn().getColor());
+        gridPaneBoard.add(circlePawn, column, row);
 
     }
 
@@ -122,7 +118,7 @@ public class GameController {
             if(column == null) column = 0;
 
             if(!board.isColumnFree(column)) {
-                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectCircle);
+                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
             }
         }
     }
@@ -131,8 +127,8 @@ public class GameController {
         for(Node node : gridPaneSelectColumn.getChildren()) {
             Circle circle = (Circle)node;
 
-            circle.removeEventHandler(MouseEvent.MOUSE_ENTERED, displayHideSelectingCircle);
-            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectCircle);
+            circle.removeEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
+            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
         }
     }
 
@@ -148,8 +144,8 @@ public class GameController {
                 circle.setFill(Color.TRANSPARENT);
             }
 
-            circle.addEventHandler(MouseEvent.MOUSE_ENTERED, displayHideSelectingCircle);
-            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, selectCircle);
+            circle.addEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
+            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
         }
     }
 
