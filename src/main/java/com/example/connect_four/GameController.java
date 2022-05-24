@@ -1,13 +1,11 @@
 package com.example.connect_four;
 
 import com.example.connect_four.logic.Board;
-import com.example.connect_four.logic.Field;
 import com.example.connect_four.logic.Game;
 import com.example.connect_four.logic.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -33,11 +31,7 @@ public class GameController {
         pointsBinding(textPoints1, game.getPlayer1());
         pointsBinding(textPoints2, game.getPlayer2());
 
-        gridPaneBoard.setStyle("-fx-background-color: pink");
-        gridPaneSelectColumn.setStyle("-fx-background-color: green");
-
         newRound();
-
 
     }
 
@@ -78,16 +72,18 @@ public class GameController {
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
             newRound();
-        }
-
-
-        game.switchPlayer();
+        } else {
+            game.switchPlayer();
         /*
         FIXME: nie działa
          */
-        circle.setFill(currentPlayer.getPawn().getColor());
+            circle.setFill(currentPlayer.getPawn().getColor());
 
-        removeEventFromCircleWhenFullColumn();
+            removeEventFromCircleWhenFullColumn();
+        }
+
+
+
 
     };
 
@@ -108,10 +104,10 @@ public class GameController {
         game.setRandomCurrentPlayer();
 
         clearBoard();
-        addEventsToCircles();
+        addEventsToSelectingCircles();
         removeAllEventsFromCircle();
 
-        addEventsToCircles();
+        addEventsToSelectingCircles();
 
 
     }
@@ -140,7 +136,7 @@ public class GameController {
         }
     }
 
-    private void addEventsToCircles() {
+    private void addEventsToSelectingCircles() {
         Player currentPlayer = game.getCurrentPlayer();
 
         for(Node node : gridPaneSelectColumn.getChildren()) {
@@ -158,10 +154,7 @@ public class GameController {
     }
 
     private void clearBoard() {
-        /*
-        FIXME: NIE DZIALA
-         */
-        gridPaneBoard.getChildren().removeAll();
+        gridPaneBoard.getChildren().clear();
     }
 
 
