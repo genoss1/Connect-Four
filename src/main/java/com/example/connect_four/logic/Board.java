@@ -78,7 +78,7 @@ public class Board {
     {
         for (int i = 3; i < MAX_ROW; i++) {
             for (int j = 0; j < (MAX_COLUMN - 3); j++) {
-                if (fields[i][j] == pawn && fields[i - 1][j + 1] == pawn && fields[i - 1][j + 2] == pawn && fields[i - 3][j + 3] == pawn) {
+                if (fields[i][j] == pawn && fields[i - 1][j + 1] == pawn && fields[i - 2][j + 2] == pawn && fields[i - 3][j + 3] == pawn) {
                     return true;
                 }
             }
