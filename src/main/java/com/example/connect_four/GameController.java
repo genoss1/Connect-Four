@@ -1,6 +1,7 @@
 package com.example.connect_four;
 
 import com.example.connect_four.logic.Board;
+import com.example.connect_four.logic.Field;
 import com.example.connect_four.logic.Game;
 import com.example.connect_four.logic.Player;
 import javafx.event.EventHandler;
@@ -151,5 +152,11 @@ public class GameController {
 
     private void clearBoard() {
         gridPaneBoard.getChildren().clear();
+        for (int i = 0; i < gridPaneBoard.getColumnCount(); i++) {
+            for (int j = 0; j < gridPaneBoard.getRowCount(); j++) {
+                Circle circleEmptyField = new Circle(Field.EMPTY_FIELD.getRadius(),Field.EMPTY_FIELD.getColor());
+                gridPaneBoard.add(circleEmptyField,i,j);
+            }
+        }
     }
 }
