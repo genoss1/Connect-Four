@@ -27,15 +27,11 @@ public class GameController {
 
     @FXML
     public void initialize() {
-
         pointsBinding(textPoints1, game.getPlayer1());
         pointsBinding(textPoints2, game.getPlayer2());
 
         newRound();
-
     }
-
-
 
     EventHandler<MouseEvent> displayHideSelectingCircle = (event) -> {
         for(Node node : gridPaneSelectColumn.getChildren()) {
@@ -49,15 +45,12 @@ public class GameController {
         Player currentPlayer = game.getCurrentPlayer();
         Color color = currentPlayer.getPawn().getColor();
         circle.setFill(color);
-
-
     };
 
     EventHandler<MouseEvent> selectCircle = (event) -> {
 
         Node node = (Node)event.getTarget();
         Circle circle = (Circle) node;
-
 
         Integer selectedColumn = GridPane.getColumnIndex(circle);
         if(selectedColumn == null) selectedColumn = 0;
@@ -108,8 +101,6 @@ public class GameController {
         removeAllEventsFromCircle();
 
         addEventsToSelectingCircles();
-
-
     }
 
     private void removeEventFromCircleWhenFullColumn() {
@@ -156,6 +147,4 @@ public class GameController {
     private void clearBoard() {
         gridPaneBoard.getChildren().clear();
     }
-
-
 }
