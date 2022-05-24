@@ -3,9 +3,9 @@ package com.example.connect_four.logic;
 import javafx.scene.paint.Color;
 
 public enum Field {
-  RED_PAWN(Color.RED),
-  YELLOW_PAWN(Color.YELLOW),
-  EMPTY_FIELD(Color.TRANSPARENT);
+  RED_PAWN(Color.web("#FF6363")),
+  YELLOW_PAWN(Color.web("#F8B400")),
+  EMPTY_FIELD(Color.web("#D2CDBB"));
 
   private final Color color;
 
