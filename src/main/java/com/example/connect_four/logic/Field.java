@@ -9,7 +9,7 @@ public enum Field {
 
   private final Color color;
 
-  private final int radius = 40;
+  private final int radius = 40; //czy ten promień będzie się zmieniać w trakcie działania programu?, bo jeśli nie to powinien być static
 
   Field(Color color) {
     this.color = color;

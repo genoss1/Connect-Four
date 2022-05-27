@@ -15,15 +15,15 @@ import javafx.scene.text.Text;
 
 public class GameController {
     @FXML
-    public GridPane gridPaneBoard;
+    private GridPane gridPaneBoard;
     @FXML
-    public Text textPoints1;
+    private Text textPoints1;
     @FXML
-    public Text textPoints2;
+    private Text textPoints2;
     @FXML
     private GridPane gridPaneSelectColumn;
 
-    Game game = new Game();
+    private final Game game = new Game();
 
     @FXML
     public void initialize() {
@@ -33,7 +33,7 @@ public class GameController {
         newRound();
     }
 
-    EventHandler<MouseEvent> displaySelectedCircle = (event) -> {
+    private void displaySelectedCircle(MouseEvent event) {
         for(Node node : gridPaneSelectColumn.getChildren()) {
             Circle circle = (Circle)node;
             circle.setFill(Color.TRANSPARENT);
@@ -47,8 +47,7 @@ public class GameController {
         circle.setFill(color);
     };
 
-    EventHandler<MouseEvent> selectColumn = (event) -> {
-
+    private void selectColumn(MouseEvent event) {
         Node node = (Node)event.getTarget();
         Circle circle = (Circle) node;
 
@@ -65,13 +64,12 @@ public class GameController {
 
         boolean isThereAnyColumnFree = false;
 
-        for(int i = 0; i < board.getMAX_COLUMN(); i++) {
+        for(int i = 0; i < Board.MAX_COLUMN; i++) {
             if(board.isColumnFree(i)) {
                 isThereAnyColumnFree = true;
                 break;
             }
         }
-
 
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
@@ -119,7 +117,7 @@ public class GameController {
             if(column == null) column = 0;
 
             if(!board.isColumnFree(column)) {
-                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
+                circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, this::selectColumn);
             }
         }
     }
@@ -128,8 +126,8 @@ public class GameController {
         for(Node node : gridPaneSelectColumn.getChildren()) {
             Circle circle = (Circle)node;
 
-            circle.removeEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
-            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
+            circle.removeEventHandler(MouseEvent.MOUSE_ENTERED, this::displaySelectedCircle);
+            circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, this::selectColumn);
         }
     }
 
@@ -145,8 +143,8 @@ public class GameController {
                 circle.setFill(Color.TRANSPARENT);
             }
 
-            circle.addEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
-            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
+            circle.addEventHandler(MouseEvent.MOUSE_ENTERED, this::displaySelectedCircle);
+            circle.addEventHandler(MouseEvent.MOUSE_CLICKED, this::selectColumn);
         }
     }
 

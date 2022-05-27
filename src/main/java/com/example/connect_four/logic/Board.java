@@ -1,16 +1,12 @@
 package com.example.connect_four.logic;
 
 public class Board {
-    private final int MAX_ROW = 6;
-    private final int MAX_COLUMN = 7;
+    public static final int MAX_ROW = 6;
+    public static final int MAX_COLUMN = 7;
     private final Field[][] fields = new Field[MAX_ROW][MAX_COLUMN];
 
     public Board() {
-        for (int i = 0; i < MAX_ROW; i++) {
-            for (int j = 0; j < MAX_COLUMN; j++) {
-                fields[i][j] = Field.EMPTY_FIELD;
-            }
-        }
+        setEmptyBoard();
     }
 
     public void setEmptyBoard() {
@@ -36,10 +32,7 @@ public class Board {
     }
 
     public boolean hasFour(Field pawn) {
-       if(hasFourVertical(pawn)) return true;
-       else if(hasFourHorizontal(pawn)) return true;
-       else if(hasFourBiasUp(pawn)) return true;
-       else return hasFourBiasDown(pawn);
+        return hasFourVertical(pawn) || hasFourHorizontal(pawn) || hasFourBiasUp(pawn) || hasFourBiasDown(pawn);
     }
 
     public boolean hasFourVertical(Field pawn)
@@ -101,9 +94,5 @@ public class Board {
             }
         }
         return false;
-    }
-
-    public int getMAX_COLUMN() {
-        return MAX_COLUMN;
     }
 }

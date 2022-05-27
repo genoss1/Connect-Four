@@ -9,6 +9,7 @@ public class Game {
     private final Player player2 = new Player(Field.YELLOW_PAWN);
     private Player currentPlayer;
     private final Board board = new Board();
+    private final Random random = new Random();
 
     public Player getPlayer1() {
         return player1;
@@ -28,10 +29,9 @@ public class Game {
 
     public int getMAX_POINTS() {
         return MAX_POINTS;
-    }
+    } //zapis jest zły, a po za tym po co getter do czegoś co powinno być public static final
 
     public void setRandomCurrentPlayer() {
-        Random random = new Random();
         Player[] players = {player1, player2};
         currentPlayer = players[random.nextInt(1)];
     }
