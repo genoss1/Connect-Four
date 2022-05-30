@@ -1,4 +1,4 @@
-package com.example.connect_four.logic;
+package connectfour.logic;
 
 import javafx.scene.paint.Color;
 
@@ -9,7 +9,7 @@ public enum Field {
 
   private final Color color;
 
-  private final int radius = 40;
+  public static final int RADIUS = 40;
 
   Field(Color color) {
     this.color = color;
@@ -19,5 +19,4 @@ public enum Field {
     return color;
   }
 
-  public int getRadius() { return radius; }
 }
