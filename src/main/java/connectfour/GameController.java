@@ -7,11 +7,14 @@ import connectfour.logic.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+
+import java.util.Objects;
 
 public class GameController {
     @FXML
@@ -22,6 +25,8 @@ public class GameController {
     private Text textPoints2;
     @FXML
     private GridPane gridPaneSelectColumn;
+    @FXML
+    private GridPane gridPaneTriangles;
 
     private final Game game = new Game();
 
@@ -29,6 +34,11 @@ public class GameController {
     public void initialize() {
         pointsBinding(textPoints1, game.getPlayer1());
         pointsBinding(textPoints2, game.getPlayer2());
+
+        for(Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView)node;
+            triangle.setStyle("-fx-opacity: 0.4;");
+        }
 
         newRound();
     }
@@ -39,8 +49,15 @@ public class GameController {
             circle.setFill(Color.TRANSPARENT);
         }
 
+        for(Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView)node;
+            triangle.setStyle("-fx-opacity: 0.4;");
+        }
+
         Node node = (Node)event.getTarget();
         Circle circle = (Circle) node;
+
+        lightTriangle(GridPane.getColumnIndex(circle));
 
         Player currentPlayer = game.getCurrentPlayer();
         Color color = currentPlayer.getPawn().getColor();
@@ -85,11 +102,23 @@ public class GameController {
 
     };
 
-    void pointsBinding(Text text, Player player) {
+    private void lightTriangle(Integer col) {
+        for(Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView)node;
+
+            Integer column = GridPane.getColumnIndex(triangle);
+
+            if(Objects.equals(col, column)) {
+                triangle.setStyle("-fx-opacity: 1;");
+            }
+        }
+    }
+
+    private void pointsBinding(Text text, Player player) {
         text.textProperty().bind(player.getIntegerProperty());
     }
 
-    void addCirclePawnToGridPaneBoard(int row, int column) {
+    private void addCirclePawnToGridPaneBoard(int row, int column) {
 
         Player currentPlayer = game.getCurrentPlayer();
         Circle circlePawn = new Circle(Field.RADIUS, currentPlayer.getPawn().getColor());
