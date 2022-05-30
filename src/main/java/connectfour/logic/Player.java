@@ -1,4 +1,4 @@
-package com.example.connect_four.logic;
+package connectfour.logic;
 
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.IntegerProperty;

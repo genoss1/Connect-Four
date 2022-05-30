@@ -1,9 +1,9 @@
-package com.example.connect_four;
+package connectfour;
 
-import com.example.connect_four.logic.Board;
-import com.example.connect_four.logic.Field;
-import com.example.connect_four.logic.Game;
-import com.example.connect_four.logic.Player;
+import connectfour.logic.Board;
+import connectfour.logic.Field;
+import connectfour.logic.Game;
+import connectfour.logic.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -15,15 +15,15 @@ import javafx.scene.text.Text;
 
 public class GameController {
     @FXML
-    public GridPane gridPaneBoard;
+    private GridPane gridPaneBoard;
     @FXML
-    public Text textPoints1;
+    private Text textPoints1;
     @FXML
-    public Text textPoints2;
+    private Text textPoints2;
     @FXML
     private GridPane gridPaneSelectColumn;
 
-    Game game = new Game();
+    private final Game game = new Game();
 
     @FXML
     public void initialize() {
@@ -65,13 +65,12 @@ public class GameController {
 
         boolean isThereAnyColumnFree = false;
 
-        for(int i = 0; i < board.getMAX_COLUMN(); i++) {
+        for(int i = 0; i < Board.MAX_COLUMN; i++) {
             if(board.isColumnFree(i)) {
                 isThereAnyColumnFree = true;
                 break;
             }
         }
-
 
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
@@ -93,7 +92,7 @@ public class GameController {
     void addCirclePawnToGridPaneBoard(int row, int column) {
 
         Player currentPlayer = game.getCurrentPlayer();
-        Circle circlePawn = new Circle(currentPlayer.getPawn().getRadius(), currentPlayer.getPawn().getColor());
+        Circle circlePawn = new Circle(Field.RADIUS, currentPlayer.getPawn().getColor());
         gridPaneBoard.add(circlePawn, column, row);
 
     }
@@ -154,7 +153,7 @@ public class GameController {
         gridPaneBoard.getChildren().clear();
         for (int i = 0; i < gridPaneBoard.getColumnCount(); i++) {
             for (int j = 0; j < gridPaneBoard.getRowCount(); j++) {
-                Circle circleEmptyField = new Circle(Field.EMPTY_FIELD.getRadius(),Field.EMPTY_FIELD.getColor());
+                Circle circleEmptyField = new Circle(Field.RADIUS,Field.EMPTY_FIELD.getColor());
                 gridPaneBoard.add(circleEmptyField,i,j);
             }
         }

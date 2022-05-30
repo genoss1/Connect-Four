@@ -1,10 +1,9 @@
-package com.example.connect_four.logic;
+package connectfour.logic;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Game {
-    private final int MAX_POINTS = 10;
+    public static final int MAX_POINTS = 10;
     private final Player player1 = new Player(Field.RED_PAWN);
     private final Player player2 = new Player(Field.YELLOW_PAWN);
     private Player currentPlayer;
@@ -24,10 +23,6 @@ public class Game {
 
     public Board getBoard() {
         return board;
-    }
-
-    public int getMAX_POINTS() {
-        return MAX_POINTS;
     }
 
     public void setRandomCurrentPlayer() {
