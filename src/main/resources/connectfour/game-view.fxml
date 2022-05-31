@@ -39,37 +39,37 @@
          <children>
             <ImageView fitHeight="54.0" fitWidth="54.0">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="1">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="2">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="3">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="4">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="5">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="6">
                <image>
-                  <Image url="@../../../../../../../Documents/Study/Semestr_4/PIO/connectFour/triangle-hover.png" />
+                  <Image url="@graphics/triangle.png" />
                </image>
             </ImageView>
          </children>
