@@ -3,7 +3,7 @@ package connectfour.logic;
 import java.util.Random;
 
 public class Game {
-    public static final int MAX_POINTS = 2;
+    public static final int MAX_POINTS = 5;
     private final Player player1 = new Player(Field.RED_PAWN, "Player 1");
     private final Player player2 = new Player(Field.YELLOW_PAWN, "Player 2");
     private Player currentPlayer;
