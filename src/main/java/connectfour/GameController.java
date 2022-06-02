@@ -6,14 +6,19 @@ import connectfour.logic.Game;
 import connectfour.logic.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class GameController {
@@ -39,7 +44,6 @@ public class GameController {
             ImageView triangle = (ImageView)node;
             triangle.setStyle("-fx-opacity: 0.4;");
         }
-
         newRound();
     }
 
@@ -91,6 +95,30 @@ public class GameController {
 
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
+            if (game.isWinner()) {
+                try {
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
+                    Parent endRoot = loader.load();
+
+                    EndController endController = loader.getController();
+
+                    Player winner = game.getWinner();
+
+                    endController.displayWinnerName(winner.getName());
+                    endController.displayPointsInGame(game.getPlayer1().getPoints(),game.getPlayer2().getPoints());
+                    endController.setColourOfContainer(winner.getPawn().getColor());
+                    endController.setButtons();
+
+                    Stage endStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                    Scene endScene = new Scene(endRoot);
+                    endStage.setScene(endScene);
+                    endStage.setFullScreen(true);
+                    endStage.setFullScreenExitHint("");
+                    endStage.show();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
             newRound();
         } else if(!isThereAnyColumnFree) {
             newRound();
@@ -99,7 +127,6 @@ public class GameController {
             circle.setFill(game.getCurrentPlayer().getPawn().getColor());
             removeEventFromCircleWhenFullColumn();
         }
-
     };
 
     private void lightTriangle(Integer col) {
