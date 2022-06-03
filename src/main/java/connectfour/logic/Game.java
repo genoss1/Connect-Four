@@ -3,9 +3,9 @@ package connectfour.logic;
 import java.util.Random;
 
 public class Game {
-    public static final int MAX_POINTS = 10;
-    private final Player player1 = new Player(Field.RED_PAWN);
-    private final Player player2 = new Player(Field.YELLOW_PAWN);
+    public static final int MAX_POINTS = 5;
+    private final Player player1 = new Player(Field.RED_PAWN, "Player 1");
+    private final Player player2 = new Player(Field.YELLOW_PAWN, "Player 2");
     private Player currentPlayer;
     private final Board board = new Board();
 
@@ -37,5 +37,23 @@ public class Game {
         } else {
             currentPlayer = player1;
         }
+    }
+
+    public boolean isWinner() {
+        return player1.getPoints() == MAX_POINTS || player2.getPoints() == MAX_POINTS;
+    }
+
+    public Player getWinner() {
+        if (player1.getPoints() == MAX_POINTS) {
+            return player1;
+        }
+        return player2;
+    }
+
+    public Player getLooser() {
+        if (player1.getPoints() != MAX_POINTS) {
+            return player1;
+        }
+        return player2;
     }
 }

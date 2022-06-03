@@ -1,0 +1,45 @@
+@font-face {
+    font-family: 'Nexa Light';
+    src: url("fonts/Nexa-Light.otf");
+}
+
+@font-face {
+    font-family: 'Nexa Bold';
+    src: url("fonts/Nexa-Bold.otf");
+}
+
+.gridpane-background {
+    -fx-background-color: #125B50;
+}
+
+.gridpane-text-container {
+    -fx-background-radius: 10px;
+    -fx-padding: 30px;
+}
+
+.text-player-information {
+    -fx-font-family: "Nexa Bold";
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 46 px;
+}
+
+.text-score-information {
+    -fx-font-family: "Nexa Bold";
+    -fx-fill: #FFFFFF;
+    -fx-font-size: 40 px;
+}
+
+.button-play-and-exit {
+    -fx-font-family: "Nexa Bold";
+    -fx-font-size: 26 px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 25px;
+}
+
+.button-play-and-exit:hover {
+    -fx-font-family: "Nexa Bold";
+    -fx-font-size: 26 px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
+}

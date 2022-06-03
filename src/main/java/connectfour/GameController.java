@@ -6,7 +6,9 @@ import connectfour.logic.Game;
 import connectfour.logic.Player;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -14,6 +16,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.util.Objects;
 
 public class GameController {
@@ -39,7 +42,6 @@ public class GameController {
             ImageView triangle = (ImageView)node;
             triangle.setStyle("-fx-opacity: 0.4;");
         }
-
         newRound();
     }
 
@@ -91,6 +93,15 @@ public class GameController {
 
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
+            Parent endScene;
+            if (game.isWinner()) {
+                try {
+                    endScene = sendStorage();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                GameApplication.changeScene(endScene);
+            }
             newRound();
         } else if(!isThereAnyColumnFree) {
             newRound();
@@ -99,8 +110,19 @@ public class GameController {
             circle.setFill(game.getCurrentPlayer().getPawn().getColor());
             removeEventFromCircleWhenFullColumn();
         }
-
     };
+
+    private Parent sendStorage() throws IOException {
+        Storage storage = new Storage(game.getWinner(), game.getLooser()); //or assign seperatly each objects
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
+        Parent scene = loader.load();
+
+        EndController endController = loader.getController();
+        endController.receiveStorage(storage);
+
+        return scene;
+    }
 
     private void lightTriangle(Integer col) {
         for(Node node : gridPaneTriangles.getChildren()) {
