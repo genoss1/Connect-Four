@@ -4,6 +4,7 @@ import connectfour.logic.Board;
 import connectfour.logic.Field;
 import connectfour.logic.Game;
 import connectfour.logic.Player;
+import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -101,8 +102,26 @@ public class GameController {
                     throw new RuntimeException(e);
                 }
                 GameApplication.changeScene(endScene);
+            }else{
+                setWinningFour();
+                try {
+                    Thread.sleep(50);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                Integer finalSelectedColumn = selectedColumn;
+                Platform.runLater(() -> {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                    addCirclePawnToGridPaneBoard(row, finalSelectedColumn);
+                    newRound();
+                });
             }
-            newRound();
+
         } else if(!isThereAnyColumnFree) {
             newRound();
         }else {
@@ -122,6 +141,62 @@ public class GameController {
         endController.receiveStorage(storage);
 
         return scene;
+    }
+
+    private void setWinningFour() {
+        if (game.getBoard().hasFourVertical(game.getCurrentPlayer().getPawn())) {
+            for (int i = 0; i < (6 - 3); i++) {
+                for (int j = 0; j < 7; j++) {
+                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 1][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 2][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 3][j] == game.getCurrentPlayer().getPawn()) {
+                        addCirclePawnToGridPaneBoardWin(i, j);
+                        addCirclePawnToGridPaneBoardWin(i + 1, j);
+                        addCirclePawnToGridPaneBoardWin(i + 2, j);
+                        addCirclePawnToGridPaneBoardWin(i + 3, j);
+                    }
+                }
+            }
+        } else if (game.getBoard().hasFourBiasUp(game.getCurrentPlayer().getPawn())) {
+            for (int i = 3; i < 6; i++) {
+                for (int j = 0; j < (7 - 3); j++) {
+                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 1][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 2][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                        addCirclePawnToGridPaneBoardWin(i, j);
+                        addCirclePawnToGridPaneBoardWin(i - 1, j + 1);
+                        addCirclePawnToGridPaneBoardWin(i - 2, j + 2);
+                        addCirclePawnToGridPaneBoardWin(i - 3, j + 3);
+                    }
+                }
+            }
+        } else if (game.getBoard().hasFourBiasDown(game.getCurrentPlayer().getPawn())) {
+            for (int i = 0; i < (6 - 3); i++) {
+                for (int j = 0; j < (7 - 3); j++) {
+                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 1][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 2][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                        addCirclePawnToGridPaneBoardWin(i, j);
+                        addCirclePawnToGridPaneBoardWin(i + 1, j + 1);
+                        addCirclePawnToGridPaneBoardWin(i + 2, j + 2);
+                        addCirclePawnToGridPaneBoardWin(i + 3, j + 3);
+                    }
+                }
+            }
+        } else if (game.getBoard().hasFourHorizontal(game.getCurrentPlayer().getPawn())) {
+            for (int i = 0; i < (6); i++) {
+                for (int j = 0; j < (7 - 3); j++) {
+                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 3] == game.getCurrentPlayer().getPawn()) {
+                        addCirclePawnToGridPaneBoardWin(i, j);
+                        addCirclePawnToGridPaneBoardWin(i, j + 1);
+                        addCirclePawnToGridPaneBoardWin(i, j + 2);
+                        addCirclePawnToGridPaneBoardWin(i, j + 3);
+                    }
+                }
+            }
+        }
+    }
+
+    private void addCirclePawnToGridPaneBoardWin(int row, int column) {
+        Player currentPlayer = game.getCurrentPlayer();
+        Circle circlePawn = new Circle(Field.RADIUS, currentPlayer.getPawn().getColor());
+        circlePawn.setStroke(Color.web("#000000"));
+        circlePawn.setStrokeWidth(5.0);
+        gridPaneBoard.add(circlePawn, column, row);
     }
 
     private void lightTriangle(Integer col) {
