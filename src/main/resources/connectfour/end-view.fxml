@@ -28,19 +28,19 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button fx:id="playAgainButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-play-and-exit" text="PLAY AGAIN">
+            <Button fx:id="buttonPlayAgain" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-play-and-exit" text="PLAY AGAIN">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="exitButton" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-play-and-exit" text="EXIT" GridPane.columnIndex="1">
+            <Button fx:id="buttonExit" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="button-play-and-exit" text="EXIT" GridPane.columnIndex="1">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
          </children>
       </GridPane>
-      <GridPane fx:id="textContainer" styleClass="gridpane-text-container" stylesheets="@end-view.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane fx:id="gridPaneTextContainer" styleClass="gridpane-text-container" stylesheets="@end-view.css" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
@@ -51,12 +51,12 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text fx:id="winnerNameText" fill="#faf5e4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-information" text="Player" GridPane.rowIndex="1">
+            <Text fx:id="textWinnerName" fill="#faf5e4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-player-information" text="Player" GridPane.rowIndex="1">
                <font>
                   <Font size="45.0" />
                </font>
             </Text>
-            <Text fx:id="pointsInGame" fill="#faf5e4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-score-information" text="Points" GridPane.rowIndex="2">
+            <Text fx:id="textPointsInGame" fill="#faf5e4" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="text-score-information" text="Points" GridPane.rowIndex="2">
                <font>
                   <Font size="40.0" />
                </font>

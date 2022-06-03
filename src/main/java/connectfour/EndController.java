@@ -15,27 +15,27 @@ import java.io.IOException;
 public class EndController {
 
     @FXML
-    private Button playAgainButton;
+    private Button buttonPlayAgain;
 
     @FXML
-    private Button exitButton;
+    private Button buttonExit;
 
     @FXML
-    private Text winnerNameText;
+    private Text textWinnerName;
 
     @FXML
-    private Text pointsInGame;
+    private Text textPointsInGame;
 
     @FXML
-    private GridPane textContainer;
+    private GridPane gridPaneTextContainer;
 
 
     public void displayWinnerName(String playerName) {
-        winnerNameText.setText(playerName + " wins!");
+        textWinnerName.setText(playerName + " wins!");
     }
 
     public void displayPointsInGame(int firstPlayerPoints, int secondPlayerPoints) {
-        pointsInGame.setText(firstPlayerPoints + ":" + secondPlayerPoints);
+        textPointsInGame.setText(firstPlayerPoints + ":" + secondPlayerPoints);
     }
 
     private static String toHexString(Color color) {
@@ -46,12 +46,12 @@ public class EndController {
     }
 
     public void setColourOfContainer(Color color) {
-        textContainer.setStyle("-fx-background-color: " + toHexString(color) + ';');
+        gridPaneTextContainer.setStyle("-fx-background-color: " + toHexString(color) + ';');
     }
 
     public void setButtons() {
-        playAgainButton.setOnAction(event -> playAgain());
-        exitButton.setOnAction(event -> exitGame());
+        buttonPlayAgain.setOnAction(event -> playAgain());
+        buttonExit.setOnAction(event -> exitGame());
     }
 
 
@@ -68,7 +68,7 @@ public class EndController {
         stage.setFullScreen(true);
         stage.setFullScreenExitHint("");
         stage.show();
-        playAgainButton.getScene().getWindow().hide();
+        buttonPlayAgain.getScene().getWindow().hide();
     }
 
     private void exitGame() {
