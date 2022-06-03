@@ -30,14 +30,16 @@
 }
 
 .button-play-and-exit {
-    -fx-background-color: transparent;
-    -fx-text-fill: #FAF5E4;
-    -fx-font-family: "Nexa Light";
+    -fx-font-family: "Nexa Bold";
     -fx-font-size: 26 px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 25px;
 }
 
 .button-play-and-exit:hover {
-    -fx-background-color: transparent;
-    -fx-text-fill: #000000;
+    -fx-font-family: "Nexa Bold";
     -fx-font-size: 26 px;
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 25px;
+    -fx-cursor: hand;
 }
