@@ -35,19 +35,19 @@ public class EndController {
         setButtons();
     }
 
-    public void displayWinnerName() {
+    private void displayWinnerName() {
         textWinnerName.setText(stoarge.getWinner().getName() + " wins!");
     }
 
-    public void displayPointsInGame() {
+    private void displayPointsInGame() {
         textPointsInGame.setText(stoarge.getWinner().getPoints() + ":" + stoarge.getLooser().getPoints());
     }
 
-    public void setColourOfContainer() {
+    private void setColourOfContainer() {
         gridPaneTextContainer.setStyle("-fx-background-color: #" + stoarge.getWinner().getPawn().getColor().toString().substring(2, 8) + ';');
     }
 
-    public void setButtons() {
+    private void setButtons() {
         buttonPlayAgain.setOnAction(event -> {
             try {
                 playAgain();

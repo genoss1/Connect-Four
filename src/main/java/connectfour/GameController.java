@@ -112,7 +112,7 @@ public class GameController {
         }
     };
 
-    public Parent sendStorage() throws IOException {
+    private Parent sendStorage() throws IOException {
         Storage storage = new Storage(game.getWinner(), game.getLooser()); //or assign seperatly each objects
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
