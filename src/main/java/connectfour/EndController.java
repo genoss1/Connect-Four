@@ -50,25 +50,19 @@ public class EndController {
     }
 
     public void setButtons() {
-        buttonPlayAgain.setOnAction(event -> playAgain());
+        buttonPlayAgain.setOnAction(event -> {
+            try {
+                playAgain();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
         buttonExit.setOnAction(event -> exitGame());
     }
 
 
-    private void playAgain() {
-        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("game-view.fxml"));
-        Scene scene = null;
-        try {
-            scene = new Scene(fxmlLoader.load(), 320, 240);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        Stage stage = new Stage();
-        stage.setScene(scene);
-        stage.setFullScreen(true);
-        stage.setFullScreenExitHint("");
-        stage.show();
-        buttonPlayAgain.getScene().getWindow().hide();
+    private void playAgain() throws IOException {
+        GameApplication.changeScene("game-view.fxml");
     }
 
     private void exitGame() {
