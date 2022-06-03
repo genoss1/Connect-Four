@@ -9,14 +9,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -95,29 +93,14 @@ public class GameController {
 
         if(isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
+            Parent endScene;
             if (game.isWinner()) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
-                    Parent endRoot = loader.load();
-
-                    EndController endController = loader.getController();
-
-                    Player winner = game.getWinner();
-
-                    endController.displayWinnerName(winner.getName());
-                    endController.displayPointsInGame(game.getPlayer1().getPoints(),game.getPlayer2().getPoints());
-                    endController.setColourOfContainer(winner.getPawn().getColor());
-                    endController.setButtons();
-
-                    Stage endStage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                    Scene endScene = new Scene(endRoot);
-                    endStage.setScene(endScene);
-                    endStage.setFullScreen(true);
-                    endStage.setFullScreenExitHint("");
-                    endStage.show();
+                    endScene = sendStorage();
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
+                GameApplication.changeScene(endScene);
             }
             newRound();
         } else if(!isThereAnyColumnFree) {
@@ -128,6 +111,18 @@ public class GameController {
             removeEventFromCircleWhenFullColumn();
         }
     };
+
+    public Parent sendStorage() throws IOException {
+        Storage storage = new Storage(game.getWinner(), game.getLooser()); //or assign seperatly each objects
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
+        Parent scene = loader.load();
+
+        EndController endController = loader.getController();
+        endController.receiveStorage(storage);
+
+        return scene;
+    }
 
     private void lightTriangle(Integer col) {
         for(Node node : gridPaneTriangles.getChildren()) {

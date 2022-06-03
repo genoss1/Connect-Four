@@ -2,13 +2,9 @@ package connectfour;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 
@@ -29,24 +25,26 @@ public class EndController {
     @FXML
     private GridPane gridPaneTextContainer;
 
+    private Storage stoarge;
 
-    public void displayWinnerName(String playerName) {
-        textWinnerName.setText(playerName + " wins!");
+    public void receiveStorage(Storage storage) {
+        this.stoarge = storage;
+        displayWinnerName();
+        displayPointsInGame();
+        setColourOfContainer();
+        setButtons();
     }
 
-    public void displayPointsInGame(int firstPlayerPoints, int secondPlayerPoints) {
-        textPointsInGame.setText(firstPlayerPoints + ":" + secondPlayerPoints);
+    public void displayWinnerName() {
+        textWinnerName.setText(stoarge.getWinner().getName() + " wins!");
     }
 
-    private static String toHexString(Color color) {
-        return String.format("#%02X%02X%02X",
-                (int) (color.getRed() * 255),
-                (int) (color.getGreen() * 255),
-                (int) (color.getBlue() * 255));
+    public void displayPointsInGame() {
+        textPointsInGame.setText(stoarge.getWinner().getPoints() + ":" + stoarge.getLooser().getPoints());
     }
 
-    public void setColourOfContainer(Color color) {
-        gridPaneTextContainer.setStyle("-fx-background-color: " + toHexString(color) + ';');
+    public void setColourOfContainer() {
+        gridPaneTextContainer.setStyle("-fx-background-color: #" + stoarge.getWinner().getPawn().getColor().toString().substring(2, 8) + ';');
     }
 
     public void setButtons() {
@@ -59,7 +57,6 @@ public class EndController {
         });
         buttonExit.setOnAction(event -> exitGame());
     }
-
 
     private void playAgain() throws IOException {
         GameApplication.changeScene("game-view.fxml");

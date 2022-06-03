@@ -49,4 +49,11 @@ public class Game {
         }
         return player2;
     }
+
+    public Player getLooser() {
+        if (player1.getPoints() != MAX_POINTS) {
+            return player1;
+        }
+        return player2;
+    }
 }
