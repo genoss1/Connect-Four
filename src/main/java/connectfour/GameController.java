@@ -143,10 +143,13 @@ public class GameController {
         return scene;
     }
 
-    private void setWinningFourVertical(Field[][] fields) {
+    private void setWinningFourVertical() {
+        Field[][] fields = game.getBoard().getFields();
+        Field playerPawn = game.getCurrentPlayer().getPawn();
+
         for (int i = 0; i < (6 - 3); i++) {
             for (int j = 0; j < 7; j++) {
-                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i + 1][j] == game.getCurrentPlayer().getPawn() && fields[i + 2][j] == game.getCurrentPlayer().getPawn() && fields[i + 3][j] == game.getCurrentPlayer().getPawn()) {
+                if (fields[i][j] == playerPawn && fields[i + 1][j] == playerPawn && fields[i + 2][j] == playerPawn && fields[i + 3][j] == playerPawn) {
                     addCirclePawnToGridPaneBoardWin(i, j);
                     addCirclePawnToGridPaneBoardWin(i + 1, j);
                     addCirclePawnToGridPaneBoardWin(i + 2, j);
@@ -156,10 +159,13 @@ public class GameController {
         }
     }
 
-    private void setWinningFourBiasUp(Field[][] fields) {
+    private void setWinningFourBiasUp() {
+        Field[][] fields = game.getBoard().getFields();
+        Field playerPawn = game.getCurrentPlayer().getPawn();
+
         for (int i = 3; i < 6; i++) {
             for (int j = 0; j < (7 - 3); j++) {
-                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i - 1][j + 1] == game.getCurrentPlayer().getPawn() && fields[i - 2][j + 2] == game.getCurrentPlayer().getPawn() && fields[i - 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                if (fields[i][j] == playerPawn && fields[i - 1][j + 1] == playerPawn && fields[i - 2][j + 2] == playerPawn && fields[i - 3][j + 3] == playerPawn) {
                     addCirclePawnToGridPaneBoardWin(i, j);
                     addCirclePawnToGridPaneBoardWin(i - 1, j + 1);
                     addCirclePawnToGridPaneBoardWin(i - 2, j + 2);
@@ -169,10 +175,13 @@ public class GameController {
         }
     }
 
-    private void setWinningFourBiasDown(Field[][] fields) {
+    private void setWinningFourBiasDown() {
+        Field[][] fields = game.getBoard().getFields();
+        Field playerPawn = game.getCurrentPlayer().getPawn();
+
         for (int i = 0; i < (6 - 3); i++) {
             for (int j = 0; j < (7 - 3); j++) {
-                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i + 1][j + 1] == game.getCurrentPlayer().getPawn() && fields[i + 2][j + 2] == game.getCurrentPlayer().getPawn() && fields[i + 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                if (fields[i][j] == playerPawn && fields[i + 1][j + 1] == playerPawn && fields[i + 2][j + 2] == playerPawn && fields[i + 3][j + 3] == playerPawn) {
                     addCirclePawnToGridPaneBoardWin(i, j);
                     addCirclePawnToGridPaneBoardWin(i + 1, j + 1);
                     addCirclePawnToGridPaneBoardWin(i + 2, j + 2);
@@ -182,10 +191,13 @@ public class GameController {
         }
     }
 
-    private void setWinningFourHorizontal(Field[][] fields) {
+    private void setWinningFourHorizontal() {
+        Field[][] fields = game.getBoard().getFields();
+        Field playerPawn = game.getCurrentPlayer().getPawn();
+
         for (int i = 0; i < (6); i++) {
             for (int j = 0; j < (7 - 3); j++) {
-                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i][j + 1] == game.getCurrentPlayer().getPawn() && fields[i][j + 2] == game.getCurrentPlayer().getPawn() && fields[i][j + 3] == game.getCurrentPlayer().getPawn()) {
+                if (fields[i][j] == playerPawn && fields[i][j + 1] == playerPawn && fields[i][j + 2] == playerPawn && fields[i][j + 3] == playerPawn) {
                     addCirclePawnToGridPaneBoardWin(i, j);
                     addCirclePawnToGridPaneBoardWin(i, j + 1);
                     addCirclePawnToGridPaneBoardWin(i, j + 2);
@@ -196,16 +208,17 @@ public class GameController {
     }
 
     private void setWinningFour() {
-        Field[][] fields = game.getBoard().getFields();
+        Board board = game.getBoard();
+        Field playerPawn = game.getCurrentPlayer().getPawn();
 
-        if (game.getBoard().hasFourVertical(game.getCurrentPlayer().getPawn())) {
-            setWinningFourVertical(fields);
-        } else if (game.getBoard().hasFourBiasUp(game.getCurrentPlayer().getPawn())) {
-            setWinningFourBiasUp(fields);
-        } else if (game.getBoard().hasFourBiasDown(game.getCurrentPlayer().getPawn())) {
-            setWinningFourBiasDown(fields);
-        } else if (game.getBoard().hasFourHorizontal(game.getCurrentPlayer().getPawn())) {
-            setWinningFourHorizontal(fields);
+        if (board.hasFourVertical(playerPawn)) {
+            setWinningFourVertical();
+        } else if (board.hasFourBiasUp(playerPawn)) {
+            setWinningFourBiasUp();
+        } else if (board.hasFourBiasDown(playerPawn)) {
+            setWinningFourBiasDown();
+        } else if (board.hasFourHorizontal(playerPawn)) {
+            setWinningFourHorizontal();
         }
     }
 
