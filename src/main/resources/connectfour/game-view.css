@@ -12,33 +12,36 @@
     -fx-padding: 30px;
 }
 
-.text-player-name {
+.player-name {
     -fx-font-family: 'Nexa Light';
     -fx-font-size: 46 px;
     -fx-fill: #FFFFFF;
     -fx-alignment: center;
 }
 
-.text-player-score {
+.player-score {
     -fx-font-family: 'Nexa Bold';
     -fx-font-size: 36 px;
     -fx-fill: #FFFFFF;
     -fx-alignment: center;
 }
 
-.gridpane-background {
+.background {
     -fx-background-color: #125B50;
 }
 
-.gridpane-board {
+.board {
     -fx-background-color: #FAF5E4;
     -fx-background-radius: 10px;
     -fx-padding: 30px;
-
 }
 
-.gridpane-tokens-over-board {
+.tokens-over-board {
     -fx-padding: 50px;
+}
+
+.token-over-board:hover {
+    -fx-cursor: hand;
 }
 
 .circle-first-player {
