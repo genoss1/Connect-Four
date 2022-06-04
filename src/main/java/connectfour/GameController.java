@@ -39,25 +39,25 @@ public class GameController {
         pointsBinding(textPoints1, game.getPlayer1());
         pointsBinding(textPoints2, game.getPlayer2());
 
-        for(Node node : gridPaneTriangles.getChildren()) {
-            ImageView triangle = (ImageView)node;
+        for (Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView) node;
             triangle.setStyle("-fx-opacity: 0.4;");
         }
         newRound();
     }
 
     EventHandler<MouseEvent> displaySelectedCircle = (event) -> {
-        for(Node node : gridPaneSelectColumn.getChildren()) {
-            Circle circle = (Circle)node;
+        for (Node node : gridPaneSelectColumn.getChildren()) {
+            Circle circle = (Circle) node;
             circle.setFill(Color.TRANSPARENT);
         }
 
-        for(Node node : gridPaneTriangles.getChildren()) {
-            ImageView triangle = (ImageView)node;
+        for (Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView) node;
             triangle.setStyle("-fx-opacity: 0.4;");
         }
 
-        Node node = (Node)event.getTarget();
+        Node node = (Node) event.getTarget();
         Circle circle = (Circle) node;
 
         lightTriangle(GridPane.getColumnIndex(circle));
@@ -69,11 +69,11 @@ public class GameController {
 
     EventHandler<MouseEvent> selectColumn = (event) -> {
 
-        Node node = (Node)event.getTarget();
+        Node node = (Node) event.getTarget();
         Circle circle = (Circle) node;
 
         Integer selectedColumn = GridPane.getColumnIndex(circle);
-        if(selectedColumn == null) selectedColumn = 0;
+        if (selectedColumn == null) selectedColumn = 0;
 
         Board board = game.getBoard();
         Player currentPlayer = game.getCurrentPlayer();
@@ -85,14 +85,14 @@ public class GameController {
 
         boolean isThereAnyColumnFree = false;
 
-        for(int i = 0; i < Board.MAX_COLUMN; i++) {
-            if(board.isColumnFree(i)) {
+        for (int i = 0; i < Board.MAX_COLUMN; i++) {
+            if (board.isColumnFree(i)) {
                 isThereAnyColumnFree = true;
                 break;
             }
         }
 
-        if(isThereAnyFourOnBoard) {
+        if (isThereAnyFourOnBoard) {
             currentPlayer.addPoint();
             Parent endScene;
             if (game.isWinner()) {
@@ -102,7 +102,7 @@ public class GameController {
                     throw new RuntimeException(e);
                 }
                 GameApplication.changeScene(endScene);
-            }else{
+            } else {
                 setWinningFour();
                 try {
                     Thread.sleep(50);
@@ -122,9 +122,9 @@ public class GameController {
                 });
             }
 
-        } else if(!isThereAnyColumnFree) {
+        } else if (!isThereAnyColumnFree) {
             newRound();
-        }else {
+        } else {
             game.switchPlayer();
             circle.setFill(game.getCurrentPlayer().getPawn().getColor());
             removeEventFromCircleWhenFullColumn();
@@ -143,51 +143,69 @@ public class GameController {
         return scene;
     }
 
+    private void setWinningFourVertical(Field[][] fields) {
+        for (int i = 0; i < (6 - 3); i++) {
+            for (int j = 0; j < 7; j++) {
+                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i + 1][j] == game.getCurrentPlayer().getPawn() && fields[i + 2][j] == game.getCurrentPlayer().getPawn() && fields[i + 3][j] == game.getCurrentPlayer().getPawn()) {
+                    addCirclePawnToGridPaneBoardWin(i, j);
+                    addCirclePawnToGridPaneBoardWin(i + 1, j);
+                    addCirclePawnToGridPaneBoardWin(i + 2, j);
+                    addCirclePawnToGridPaneBoardWin(i + 3, j);
+                }
+            }
+        }
+    }
+
+    private void setWinningFourBiasUp(Field[][] fields) {
+        for (int i = 3; i < 6; i++) {
+            for (int j = 0; j < (7 - 3); j++) {
+                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i - 1][j + 1] == game.getCurrentPlayer().getPawn() && fields[i - 2][j + 2] == game.getCurrentPlayer().getPawn() && fields[i - 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                    addCirclePawnToGridPaneBoardWin(i, j);
+                    addCirclePawnToGridPaneBoardWin(i - 1, j + 1);
+                    addCirclePawnToGridPaneBoardWin(i - 2, j + 2);
+                    addCirclePawnToGridPaneBoardWin(i - 3, j + 3);
+                }
+            }
+        }
+    }
+
+    private void setWinningFourBiasDown(Field[][] fields) {
+        for (int i = 0; i < (6 - 3); i++) {
+            for (int j = 0; j < (7 - 3); j++) {
+                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i + 1][j + 1] == game.getCurrentPlayer().getPawn() && fields[i + 2][j + 2] == game.getCurrentPlayer().getPawn() && fields[i + 3][j + 3] == game.getCurrentPlayer().getPawn()) {
+                    addCirclePawnToGridPaneBoardWin(i, j);
+                    addCirclePawnToGridPaneBoardWin(i + 1, j + 1);
+                    addCirclePawnToGridPaneBoardWin(i + 2, j + 2);
+                    addCirclePawnToGridPaneBoardWin(i + 3, j + 3);
+                }
+            }
+        }
+    }
+
+    private void setWinningFourHorizontal(Field[][] fields) {
+        for (int i = 0; i < (6); i++) {
+            for (int j = 0; j < (7 - 3); j++) {
+                if (fields[i][j] == game.getCurrentPlayer().getPawn() && fields[i][j + 1] == game.getCurrentPlayer().getPawn() && fields[i][j + 2] == game.getCurrentPlayer().getPawn() && fields[i][j + 3] == game.getCurrentPlayer().getPawn()) {
+                    addCirclePawnToGridPaneBoardWin(i, j);
+                    addCirclePawnToGridPaneBoardWin(i, j + 1);
+                    addCirclePawnToGridPaneBoardWin(i, j + 2);
+                    addCirclePawnToGridPaneBoardWin(i, j + 3);
+                }
+            }
+        }
+    }
+
     private void setWinningFour() {
+        Field[][] fields = game.getBoard().getFields();
+
         if (game.getBoard().hasFourVertical(game.getCurrentPlayer().getPawn())) {
-            for (int i = 0; i < (6 - 3); i++) {
-                for (int j = 0; j < 7; j++) {
-                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 1][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 2][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 3][j] == game.getCurrentPlayer().getPawn()) {
-                        addCirclePawnToGridPaneBoardWin(i, j);
-                        addCirclePawnToGridPaneBoardWin(i + 1, j);
-                        addCirclePawnToGridPaneBoardWin(i + 2, j);
-                        addCirclePawnToGridPaneBoardWin(i + 3, j);
-                    }
-                }
-            }
+            setWinningFourVertical(fields);
         } else if (game.getBoard().hasFourBiasUp(game.getCurrentPlayer().getPawn())) {
-            for (int i = 3; i < 6; i++) {
-                for (int j = 0; j < (7 - 3); j++) {
-                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 1][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 2][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i - 3][j + 3] == game.getCurrentPlayer().getPawn()) {
-                        addCirclePawnToGridPaneBoardWin(i, j);
-                        addCirclePawnToGridPaneBoardWin(i - 1, j + 1);
-                        addCirclePawnToGridPaneBoardWin(i - 2, j + 2);
-                        addCirclePawnToGridPaneBoardWin(i - 3, j + 3);
-                    }
-                }
-            }
+            setWinningFourBiasUp(fields);
         } else if (game.getBoard().hasFourBiasDown(game.getCurrentPlayer().getPawn())) {
-            for (int i = 0; i < (6 - 3); i++) {
-                for (int j = 0; j < (7 - 3); j++) {
-                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 1][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 2][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i + 3][j + 3] == game.getCurrentPlayer().getPawn()) {
-                        addCirclePawnToGridPaneBoardWin(i, j);
-                        addCirclePawnToGridPaneBoardWin(i + 1, j + 1);
-                        addCirclePawnToGridPaneBoardWin(i + 2, j + 2);
-                        addCirclePawnToGridPaneBoardWin(i + 3, j + 3);
-                    }
-                }
-            }
+            setWinningFourBiasDown(fields);
         } else if (game.getBoard().hasFourHorizontal(game.getCurrentPlayer().getPawn())) {
-            for (int i = 0; i < (6); i++) {
-                for (int j = 0; j < (7 - 3); j++) {
-                    if (game.getBoard().getFields()[i][j] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 1] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 2] == game.getCurrentPlayer().getPawn() && game.getBoard().getFields()[i][j + 3] == game.getCurrentPlayer().getPawn()) {
-                        addCirclePawnToGridPaneBoardWin(i, j);
-                        addCirclePawnToGridPaneBoardWin(i, j + 1);
-                        addCirclePawnToGridPaneBoardWin(i, j + 2);
-                        addCirclePawnToGridPaneBoardWin(i, j + 3);
-                    }
-                }
-            }
+            setWinningFourHorizontal(fields);
         }
     }
 
@@ -200,12 +218,12 @@ public class GameController {
     }
 
     private void lightTriangle(Integer col) {
-        for(Node node : gridPaneTriangles.getChildren()) {
-            ImageView triangle = (ImageView)node;
+        for (Node node : gridPaneTriangles.getChildren()) {
+            ImageView triangle = (ImageView) node;
 
             Integer column = GridPane.getColumnIndex(triangle);
 
-            if(Objects.equals(col, column)) {
+            if (Objects.equals(col, column)) {
                 triangle.setStyle("-fx-opacity: 1;");
             }
         }
@@ -237,21 +255,21 @@ public class GameController {
     private void removeEventFromCircleWhenFullColumn() {
         Board board = game.getBoard();
 
-        for(Node node : gridPaneSelectColumn.getChildren()) {
-            Circle circle = (Circle)node;
+        for (Node node : gridPaneSelectColumn.getChildren()) {
+            Circle circle = (Circle) node;
 
             Integer column = GridPane.getColumnIndex(circle);
-            if(column == null) column = 0;
+            if (column == null) column = 0;
 
-            if(!board.isColumnFree(column)) {
+            if (!board.isColumnFree(column)) {
                 circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
             }
         }
     }
 
     private void removeAllEventsFromCircle() {
-        for(Node node : gridPaneSelectColumn.getChildren()) {
-            Circle circle = (Circle)node;
+        for (Node node : gridPaneSelectColumn.getChildren()) {
+            Circle circle = (Circle) node;
 
             circle.removeEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
             circle.removeEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
@@ -261,10 +279,10 @@ public class GameController {
     private void addEventsToSelectingCircles() {
         Player currentPlayer = game.getCurrentPlayer();
 
-        for(Node node : gridPaneSelectColumn.getChildren()) {
-            Circle circle = (Circle)node;
+        for (Node node : gridPaneSelectColumn.getChildren()) {
+            Circle circle = (Circle) node;
 
-            if(GridPane.getRowIndex(circle) == null && GridPane.getColumnIndex(circle) == null  ) {
+            if (GridPane.getRowIndex(circle) == null && GridPane.getColumnIndex(circle) == null) {
                 circle.setFill(currentPlayer.getPawn().getColor());
             } else {
                 circle.setFill(Color.TRANSPARENT);
@@ -279,8 +297,8 @@ public class GameController {
         gridPaneBoard.getChildren().clear();
         for (int i = 0; i < gridPaneBoard.getColumnCount(); i++) {
             for (int j = 0; j < gridPaneBoard.getRowCount(); j++) {
-                Circle circleEmptyField = new Circle(Field.RADIUS,Field.EMPTY_FIELD.getColor());
-                gridPaneBoard.add(circleEmptyField,i,j);
+                Circle circleEmptyField = new Circle(Field.RADIUS, Field.EMPTY_FIELD.getColor());
+                gridPaneBoard.add(circleEmptyField, i, j);
             }
         }
     }
