@@ -51,3 +51,22 @@
 .circle-second-player {
     -fx-fill: #F8B400;
 }
+.buttonRestart{
+    -fx-graphic: url("graphics/circular-arrow.png");;
+    -fx-background-color: transparent;
+}
+.buttonExit {
+    -fx-graphic: url("graphics/exit.png");;
+    -fx-background-color: transparent;
+}
+
+.buttonRestart:hover {
+    -fx-graphic: url("graphics/circular-arrow-hover.png");;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}
+.buttonExit:hover {
+    -fx-graphic: url("graphics/exit-hover.png");;
+    -fx-background-color: transparent;
+    -fx-cursor: hand;
+}

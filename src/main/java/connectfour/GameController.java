@@ -10,13 +10,14 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -32,6 +33,8 @@ public class GameController {
     private GridPane gridPaneSelectColumn;
     @FXML
     private GridPane gridPaneTriangles;
+    @FXML
+    private Button buttonExit;
 
     private final Game game = new Game();
 
@@ -305,6 +308,15 @@ public class GameController {
             circle.addEventHandler(MouseEvent.MOUSE_ENTERED, displaySelectedCircle);
             circle.addEventHandler(MouseEvent.MOUSE_CLICKED, selectColumn);
         }
+    }
+    @FXML
+    public void exitGame(){
+        Stage stage = (Stage) buttonExit.getScene().getWindow();
+        stage.close();
+    }
+    @FXML
+    private void restartGame() throws IOException {
+        GameApplication.changeScene("game-view.fxml");
     }
 
     private void clearBoard() {
