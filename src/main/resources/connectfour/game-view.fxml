@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -10,169 +11,200 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@game-view.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="connectfour.GameController">
-  <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-    <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="423.0" minHeight="10.0" percentHeight="75.0" prefHeight="361.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="96.0" minHeight="10.0" percentHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="connectfour.GameController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <GridPane fx:id="gridPaneTriangles" prefHeight="58.0" prefWidth="439.0" styleClass="triangle" GridPane.columnIndex="1">
+      <GridPane alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@game-view.css">
         <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="30.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" percentHeight="15.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="423.0" minHeight="10.0" percentHeight="75.0" prefHeight="361.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="96.0" minHeight="10.0" percentHeight="5.0" prefHeight="96.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="54.0" fitWidth="54.0">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="2">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="3">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="4">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="5">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="6">
-               <image>
-                  <Image url="@graphics/triangle.png" />
-               </image>
-            </ImageView>
-         </children>
-      </GridPane>
-      <GridPane fx:id="gridPaneSelectColumn" layoutX="190.0" layoutY="10.0" prefHeight="60.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Circle fx:id="circleChoose1" fill="DODGERBLUE" layoutX="126.0" layoutY="55.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="50.0" />
-               </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose2" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="38.0" />
-               </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose3" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets left="25.0" />
-               </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose4" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <Circle fx:id="circleChoose5" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="25.0" />
-               </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose6" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="38.0" />
-               </GridPane.margin></Circle>
-            <Circle fx:id="circleChoose7" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets right="50.0" />
-               </GridPane.margin></Circle>
-         </children>
-      </GridPane>
-      <GridPane fx:id="gridPaneBoard" styleClass="board" GridPane.columnIndex="1" GridPane.rowIndex="2">
-        <columnConstraints>
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
-        </rowConstraints>
-      </GridPane>
-      <GridPane stylesheets="@game-view.css" GridPane.rowIndex="2">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-name" text="Player 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Circle fx:id="circleLeft1" fill="#ff6363" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-first-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Text fx:id="textPoints1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-score" text="0" textAlignment="CENTER" wrappingWidth="25.055999755859375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
-               <GridPane.margin>
-                  <Insets />
-               </GridPane.margin></Text>
-         </children>
-      </GridPane>
-      <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
-         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-         </columnConstraints>
-         <rowConstraints>
-            <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
-         </rowConstraints>
-         <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-name" text="Player 2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Text>
-            <Circle fx:id="circleRight2" fill="#f8b400" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-second-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <Text fx:id="textPoints2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-score" text="0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+            <GridPane fx:id="gridPaneTriangles" prefHeight="58.0" prefWidth="439.0" styleClass="triangle" GridPane.columnIndex="1">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="TOP" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <ImageView fitHeight="54.0" fitWidth="54.0">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="1">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="2">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="3">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="4">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="5">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="54.0" fitWidth="54.0" GridPane.columnIndex="6">
+                     <image>
+                        <Image url="@graphics/triangle.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridPaneSelectColumn" layoutX="190.0" layoutY="10.0" prefHeight="60.0" prefWidth="450.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Circle fx:id="circleChoose1" fill="DODGERBLUE" layoutX="126.0" layoutY="55.0" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="50.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Circle fx:id="circleChoose2" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="38.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Circle fx:id="circleChoose3" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets left="25.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Circle fx:id="circleChoose4" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Circle fx:id="circleChoose5" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="25.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Circle fx:id="circleChoose6" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="38.0" />
+                     </GridPane.margin>
+                  </Circle>
+                  <Circle fx:id="circleChoose7" fill="DODGERBLUE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="token-over-board" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets right="50.0" />
+                     </GridPane.margin>
+                  </Circle>
+               </children>
+            </GridPane>
+            <GridPane fx:id="gridPaneBoard" styleClass="board" GridPane.columnIndex="1" GridPane.rowIndex="2">
+              <columnConstraints>
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" valignment="CENTER" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
+            <GridPane stylesheets="@game-view.css" GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-name" text="Player 1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Circle fx:id="circleLeft1" fill="#ff6363" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-first-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Text fx:id="textPoints1" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-score" text="0" textAlignment="CENTER" wrappingWidth="25.055999755859375" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </Text>
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" percentHeight="20.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" percentHeight="50.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-name" text="Player 2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <Circle fx:id="circleRight2" fill="#f8b400" radius="55.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" styleClass="circle-second-player" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Text fx:id="textPoints2" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="player-score" text="0" textAlignment="CENTER" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane GridPane.columnIndex="2">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="60.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <Button fx:id="buttonExit" mnemonicParsing="false" onAction="#exitGame" styleClass="buttonExit" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <Button fx:id="buttonRestart" maxHeight="342.0" maxWidth="386.0" mnemonicParsing="false" onAction="#restartGame" prefHeight="274.0" prefWidth="283.0" styleClass="buttonRestart" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
          </children>
       </GridPane>
    </children>
