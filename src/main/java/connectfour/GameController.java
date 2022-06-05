@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
@@ -73,56 +74,25 @@ public class GameController {
         Circle circle = (Circle) node;
 
         Integer selectedColumn = GridPane.getColumnIndex(circle);
-        if (selectedColumn == null) selectedColumn = 0;
+        addPawnToSelectedColumn(selectedColumn);
 
         Board board = game.getBoard();
         Player currentPlayer = game.getCurrentPlayer();
-        int row = board.addPawn(currentPlayer.getPawn(), selectedColumn);
 
-        addCirclePawnToGridPaneBoard(row, selectedColumn);
-
-        boolean isThereAnyFourOnBoard = game.getBoard().hasAnyFour();
-
-        boolean isThereAnyColumnFree = false;
-
-        for (int i = 0; i < Board.MAX_COLUMN; i++) {
-            if (board.isColumnFree(i)) {
-                isThereAnyColumnFree = true;
-                break;
-            }
-        }
-
-        if (isThereAnyFourOnBoard) {
+        if (board.hasAnyFour()) {
             currentPlayer.addPoint();
-            Parent endScene;
+
             if (game.isWinner()) {
                 try {
-                    endScene = sendStorage();
+                    endGame();
                 } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                GameApplication.changeScene(endScene);
-            } else {
-                setWinningFour();
-                try {
-                    Thread.sleep(50);
-                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                Integer finalSelectedColumn = selectedColumn;
-                Platform.runLater(() -> {
-                    try {
-                        Thread.sleep(3000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    addCirclePawnToGridPaneBoard(row, finalSelectedColumn);
-                    newRound();
-                });
+            } else {
+                displayFour();
             }
 
-        } else if (!isThereAnyColumnFree) {
+        } else if (!board.hasFreeColumn()) {
             newRound();
         } else {
             game.switchPlayer();
@@ -131,8 +101,39 @@ public class GameController {
         }
     };
 
+    private void displayFour() {
+        setWinningFour();
+        try {
+            Thread.sleep(50);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        Platform.runLater(() -> {
+            try {
+                Thread.sleep(500);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            newRound();
+        });
+    }
+
+    private void addPawnToSelectedColumn(Integer selectedColumn ) {
+        if (selectedColumn == null) selectedColumn = 0;
+        Board board = game.getBoard();
+        Player currentPlayer = game.getCurrentPlayer();
+
+        int row = board.addPawn(currentPlayer.getPawn(), selectedColumn);
+        addCirclePawnToGridPaneBoard(row, selectedColumn);
+    }
+
+    private void endGame() throws IOException {
+        Parent endScene = sendStorage();
+        GameApplication.changeScene(endScene);
+    }
+
     private Parent sendStorage() throws IOException {
-        Storage storage = new Storage(game.getWinner(), game.getLooser()); //or assign seperatly each objects
+        Storage storage = new Storage(game.getWinner(), game.getLooser());
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("end-view.fxml"));
         Parent scene = loader.load();
@@ -225,7 +226,7 @@ public class GameController {
     private void addCirclePawnToGridPaneBoardWin(int row, int column) {
         Player currentPlayer = game.getCurrentPlayer();
         Circle circlePawn = new Circle(Field.RADIUS, currentPlayer.getPawn().getColor());
-        circlePawn.setStroke(Color.BLACK);
+        circlePawn.setStroke(Color.web("#125B50"));
         circlePawn.setStrokeWidth(5.0);
         gridPaneBoard.add(circlePawn, column, row);
     }

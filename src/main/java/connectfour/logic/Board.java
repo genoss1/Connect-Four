@@ -95,4 +95,13 @@ public class Board {
         }
         return false;
     }
+
+    public boolean hasFreeColumn() {
+        for (int i = 0; i < Board.MAX_COLUMN; i++) {
+            if (isColumnFree(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
 }

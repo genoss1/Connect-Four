@@ -4,17 +4,12 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
 
 public class EndController {
-
-    @FXML
-    private Button buttonPlayAgain;
-
-    @FXML
-    private Button buttonExit;
 
     @FXML
     private Text textWinnerName;
@@ -25,44 +20,33 @@ public class EndController {
     @FXML
     private GridPane gridPaneTextContainer;
 
-    private Storage stoarge;
+    private Storage storage;
 
     public void receiveStorage(Storage storage) {
-        this.stoarge = storage;
+        this.storage = storage;
         displayWinnerName();
         displayPointsInGame();
         setColourOfContainer();
-        setButtons();
     }
 
     private void displayWinnerName() {
-        textWinnerName.setText(stoarge.getWinner().getName() + " wins!");
+        textWinnerName.setText(storage.getWinner().getName() + " wins!");
     }
 
     private void displayPointsInGame() {
-        textPointsInGame.setText(stoarge.getWinner().getPoints() + ":" + stoarge.getLooser().getPoints());
+        textPointsInGame.setText(storage.getWinner().getPoints() + ":" + storage.getLooser().getPoints());
     }
 
     private void setColourOfContainer() {
-        gridPaneTextContainer.setStyle("-fx-background-color: #" + stoarge.getWinner().getPawn().getColor().toString().substring(2, 8) + ';');
+        Color winnerColor = storage.getWinner().getPawn().getColor();
+        gridPaneTextContainer.setStyle("-fx-background-color: #" + winnerColor.toString().substring(2, 8) + ';');
     }
 
-    private void setButtons() {
-        buttonPlayAgain.setOnAction(event -> {
-            try {
-                playAgain();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        });
-        buttonExit.setOnAction(event -> exitGame());
-    }
-
-    private void playAgain() throws IOException {
+    public void playAgain() throws IOException {
         GameApplication.changeScene("game-view.fxml");
     }
 
-    private void exitGame() {
+    public void exitGame() {
         Platform.exit();
     }
 }
