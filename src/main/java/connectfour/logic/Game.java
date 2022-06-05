@@ -28,7 +28,7 @@ public class Game {
     public void setRandomCurrentPlayer() {
         Random random = new Random();
         Player[] players = {player1, player2};
-        currentPlayer = players[random.nextInt(1)];
+        currentPlayer = players[random.nextInt(2)];
     }
 
     public void switchPlayer() {
