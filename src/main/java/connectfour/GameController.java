@@ -47,6 +47,8 @@ public class GameController {
             ImageView triangle = (ImageView) node;
             triangle.setStyle("-fx-opacity: 0.4;");
         }
+
+        game.setRandomCurrentPlayer();
         newRound();
     }
 
@@ -260,7 +262,7 @@ public class GameController {
 
     private void newRound() {
         game.getBoard().setEmptyBoard();
-        game.setRandomCurrentPlayer();
+        game.switchPlayer();
 
         clearBoard();
         addEventsToSelectingCircles();
