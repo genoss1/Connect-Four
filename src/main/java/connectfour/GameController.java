@@ -8,12 +8,17 @@ import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.HPos;
+import javafx.geometry.Pos;
+import javafx.geometry.VPos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
@@ -23,20 +28,22 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class GameController {
+
     @FXML
-    private GridPane gridPaneBoard;
+    GridPane griPaneMainDashboard;
     @FXML
     private Text textPoints1;
     @FXML
     private Text textPoints2;
-    @FXML
-    private GridPane gridPaneSelectColumn;
+
     @FXML
     private GridPane gridPaneTriangles;
     @FXML
     private Button buttonExit;
 
     private final Game game = new Game();
+    private GridPane gridPaneBoard;
+    private GridPane gridPaneSelectColumn;
 
     @FXML
     public void initialize() {
@@ -48,7 +55,12 @@ public class GameController {
             triangle.setStyle("-fx-opacity: 0.4;");
         }
 
+        generateBoard();
+
         game.setRandomCurrentPlayer();
+
+        generateSelectColumn();
+
         newRound();
     }
 
@@ -323,11 +335,56 @@ public class GameController {
 
     private void clearBoard() {
         gridPaneBoard.getChildren().clear();
-        for (int i = 0; i < gridPaneBoard.getColumnCount(); i++) {
-            for (int j = 0; j < gridPaneBoard.getRowCount(); j++) {
+        for (int i = 0; i < Board.MAX_COLUMN; i++) {
+            for (int j = 0; j < Board.MAX_ROW; j++) {
                 Circle circleEmptyField = new Circle(Field.RADIUS, Field.EMPTY_FIELD.getColor());
                 gridPaneBoard.add(circleEmptyField, i, j);
             }
         }
     }
+
+    private void generateBoard() {
+        gridPaneBoard = new GridPane();
+        griPaneMainDashboard.add(gridPaneBoard, 1, 2);
+        gridPaneBoard.getStyleClass().add("board");
+        gridPaneBoard.setAlignment(Pos.CENTER);
+
+        for(int i = 0; i < Board.MAX_COLUMN; i++) {
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setHalignment(HPos.CENTER);
+            columnConstraints.setPercentWidth(20);
+
+            gridPaneBoard.getColumnConstraints().add(columnConstraints);
+        }
+
+        for(int i = 0; i < Board.MAX_ROW; i++) {
+
+            RowConstraints rowConstraints = new RowConstraints();
+            rowConstraints.setValignment(VPos.CENTER);
+            rowConstraints.setPercentHeight(20);
+
+            gridPaneBoard.getRowConstraints().add(rowConstraints);
+        }
+    }
+
+    private void generateSelectColumn() {
+        gridPaneSelectColumn = new GridPane();
+        griPaneMainDashboard.add(gridPaneSelectColumn, 1, 1);
+        gridPaneSelectColumn.setAlignment(Pos.CENTER);
+
+        for(int i = 0; i < Board.MAX_COLUMN; i++) {
+            ColumnConstraints columnConstraints = new ColumnConstraints();
+            columnConstraints.setHalignment(HPos.CENTER);
+            columnConstraints.setPercentWidth(20);
+
+            gridPaneSelectColumn.getColumnConstraints().add(columnConstraints);
+
+            Player currentPlayer = game.getCurrentPlayer();
+            Circle circlePawn = new Circle(Field.RADIUS, currentPlayer.getPawn().getColor());
+            circlePawn.getStyleClass().add("tokens-over-board");
+            gridPaneSelectColumn.add(circlePawn, i, 0);
+        }
+    }
+
+
 }

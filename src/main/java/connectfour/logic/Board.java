@@ -1,8 +1,8 @@
 package connectfour.logic;
 
 public class Board {
-    public static final int MAX_ROW = 6;
-    public static final int MAX_COLUMN = 7;
+    public static final int MAX_ROW = 9;
+    public static final int MAX_COLUMN = 9;
     private final Field[][] fields = new Field[MAX_ROW][MAX_COLUMN];
 
     public Board() {
@@ -35,8 +35,7 @@ public class Board {
         return hasFourVertical(pawn) || hasFourHorizontal(pawn) || hasFourBiasUp(pawn) || hasFourBiasDown(pawn);
     }
 
-    public boolean hasFourVertical(Field pawn)
-    {
+    public boolean hasFourVertical(Field pawn) {
         for (int i = 0; i < (MAX_ROW - 3); i++) {
             for (int j = 0; j < MAX_COLUMN; j++) {
                 if (fields[i][j] == pawn && fields[i + 1][j] == pawn && fields[i + 2][j] == pawn && fields[i + 3][j] == pawn) {
